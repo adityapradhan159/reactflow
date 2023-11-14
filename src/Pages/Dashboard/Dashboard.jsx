@@ -3,6 +3,12 @@ import "./dashboard.css"
 import Sidebar from '../../Components/Sidebar/Sidebar'
 import FlowDiagram from '../../Components/FlowDiagram/FlowDiagram'
 import { addEdge, applyNodeChanges, useEdgesState, useNodesState } from 'reactflow'
+import NodeType from '../../Components/NodeType/NodeType'
+
+
+
+
+const nodeTypes = { textUpdater: NodeType };
 
 const Dashboard = () => {
 
@@ -33,9 +39,14 @@ const Dashboard = () => {
           return [
             ...els,
             {
-              id: (Math.random()).toString(),
-              position: { x: 100, y: yPos.current },
-              data: { label: "Hello" }
+              // id: (Math.random()).toString(),
+              // position: { x: 100, y: yPos.current },
+              // data: { label: "Hello" }
+              id: (Math.random()).toString(), 
+              type:'textUpdater' ,
+              position: { x: 100, y: yPos.current  }, 
+              data: { label: '2' }
+              
             }
           ];
         });
@@ -59,12 +70,15 @@ const Dashboard = () => {
   const initialNodes = [
     { id: '1', position: { x: 0, y: 0 }, data: { label: '1' } },
     { id: '2', position: { x: 0, y: 100 }, data: { label: '2' } },
+    // { id: '3', type:'textUpdater' ,position: { x: 0, y: 100 }, data: { label: '2' } },
   ];
   const initialEdges = [{ id: 'e1-2', source: '1', target: '2' }];
 
 
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+
+  
 
   const onConnect = useCallback(
     (params) => setEdges((eds) => addEdge(params, eds)),
@@ -74,7 +88,7 @@ const Dashboard = () => {
   return (
     <div className='Dashboard'>
         <Sidebar addNode={addNode}/>
-        <FlowDiagram nodes={nodes} edges={edges} onConnect={onConnect} onEdgesChange={onEdgesChange} onNodesChange={onNodesChange}/>
+        <FlowDiagram nodeTypes={nodeTypes} nodes={nodes} edges={edges} onConnect={onConnect} onEdgesChange={onEdgesChange} onNodesChange={onNodesChange}/>
         {/* <FlowDiagram addEdge={addEdge} els={els} onNodesChange={onNodesChange}/> */}
     </div>
   )

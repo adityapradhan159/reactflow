@@ -7,21 +7,13 @@ import ReactFlow, {
   useEdgesState,
   addEdge,
 } from 'reactflow';
+import NodeType from '../NodeType/NodeType';
 
 
-const FlowDiagram = ({ nodes, edges, onNodesChange, onConnect, onEdgesChange}) => {
+const FlowDiagram = ({ nodes, edges, onNodesChange, onConnect, onEdgesChange, nodeTypes}) => {
 
 
-  // const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  // const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
- 
-  // const onConnect = useCallback(
-  //   (params) => setEdges((eds) => addEdge(params, eds)),
-  //   [setEdges],
-  // );
-
-
-    
+  // const nodeTypes = { textUpdater: NodeType };
 
   return (
     <div className='flowDiagram'>
@@ -38,6 +30,7 @@ const FlowDiagram = ({ nodes, edges, onNodesChange, onConnect, onEdgesChange}) =
           onNodesChange={onNodesChange}
           onEdgesChange={onEdgesChange}
           onConnect={onConnect}
+          nodeTypes={nodeTypes}
         >
           <Controls />
           <MiniMap />
