@@ -85,6 +85,8 @@ const Dashboard = () => {
     [setEdges],
   );
 
+  console.log(onNodesChange)
+
   return (
     <div className='Dashboard'>
         <Sidebar addNode={addNode}/>
