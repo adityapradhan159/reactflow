@@ -10,6 +10,7 @@ import {
   useNodesState,
 } from "reactflow";
 import NodeType from "../../Components/NodeType/NodeType";
+import axios from "axios";
 
 const nodeTypes = { textUpdater: NodeType };
 
@@ -27,24 +28,20 @@ const Dashboard = () => {
       const flow = rfInstance.toObject();
       console.log(flow);
       localStorage.setItem(flowKey, JSON.stringify(flow));
+
+      
+      axios.post("https://knowing-cottony-metal.glitch.me/api/chatFlow",(flow))
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+
     }
   }, [rfInstance]);
-  // const initialElements = [
-  //     {
-  //       id: "1",
-  //       type: "input", // input node
-  //       data: { label: "Input Node" },
-  //       position: { x: 100, y: 0 }
-  //     }
-  // ]
-
-  // const [els, setEls] = useState(initialElements);
+ 
   const yPos = useRef(0);
-
-  // const onNodesChange = useCallback(
-  //     (changes) => setEls((els) => applyNodeChanges(changes, els)),
-  //     []
-  //   );
 
   const addNode = useCallback(() => {
     yPos.current += 100;

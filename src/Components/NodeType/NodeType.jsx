@@ -22,7 +22,9 @@ const NodeType = ({id, isConnectable, data, onChange, setNodes}) => {
     console.log(id)
     console.log("Data",data)
 
+    
     data.text = updatedMessages
+
 
   };
 
