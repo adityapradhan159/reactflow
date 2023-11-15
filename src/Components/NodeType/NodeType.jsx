@@ -2,19 +2,28 @@ import React, { useCallback, useState } from "react";
 import { Handle, Position } from "reactflow";
 import "./nodeType.css";
 
-const NodeType = ({ isConnectable }) => {
+const NodeType = ({id, isConnectable, data, onChange, setNodes}) => {
   const handleStyle = { left: 10, background: "#555" };
   const [messages, setMessages] = useState([
     { id: 1, type: "text", content: "" },
   ]);
 
-  const handleChange = (messageId, evt) => {
+  // console.log("Id",id)
+
+
+  const handleChange = (messageId, evt, type) => {
     const updatedMessages = messages.map((message) =>
       message.id === messageId
         ? { ...message, content: evt.target.value }
         : message
     );
+   
     setMessages(updatedMessages);
+    console.log(id)
+    console.log("Data",data)
+
+    data.text = updatedMessages
+
   };
 
   const addNewButton = () => {
@@ -25,6 +34,8 @@ const NodeType = ({ isConnectable }) => {
     };
     setMessages([...messages, newButton]);
   };
+
+  // console.log("Messages",messages)
 
   return (
     <div className="text-updater-node">
@@ -76,7 +87,7 @@ const NodeType = ({ isConnectable }) => {
                   }}
                   id={`button${message.id}`}
                   name={`button${message.id}`}
-                  onChange={(evt) => handleChange(message.id, evt)}
+                  onChange={(evt) => handleChange(message.id, evt, message.type)}
                   value={message.content}
                   className="nodrag"
                 />

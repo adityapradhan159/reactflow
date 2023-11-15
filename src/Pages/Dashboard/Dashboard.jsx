@@ -14,6 +14,11 @@ import NodeType from "../../Components/NodeType/NodeType";
 const nodeTypes = { textUpdater: NodeType };
 
 const Dashboard = () => {
+
+
+
+
+
   const flowKey = "example-flow";
   const [rfInstance, setRfInstance] = useState(null);
 
@@ -51,7 +56,7 @@ const Dashboard = () => {
           id: Math.random().toString(),
           type: "textUpdater",
           position: { x: 100, y: yPos.current },
-          data: { label:'123' },
+          data: {},
         },
       ];
     });
@@ -62,22 +67,39 @@ const Dashboard = () => {
   ];
   const initialEdges = [];
 
+   // const [nodes, setNodes] = useState(initialNodes);
+  // const [edges, setEdges] = useState([]);
+
+
+  // const onNodesChange = useCallback(
+  //   (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
+  //   [setNodes]
+  // );
+
+  // const onEdgesChange = useCallback(
+  //   (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
+  //   [setEdges]
+  // );
+
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+
+ 
 
   const onConnect = useCallback(
     (params) => setEdges((eds) => addEdge(params, eds)),
     [setEdges]
   );
 
-  console.log(onNodesChange)
+  // console.log(onNodesChange)
 
   return (
     <ReactFlowProvider>
       <div className="Dashboard">
-        <Sidebar addNode={addNode} onSave={onSave} />
+        <Sidebar addNode={addNode} onSave={onSave} onc/>
         <FlowDiagram
           nodeTypes={nodeTypes}
+          setNodes={setNodes}
           setRfInstance={setRfInstance}
           nodes={nodes}
           edges={edges}

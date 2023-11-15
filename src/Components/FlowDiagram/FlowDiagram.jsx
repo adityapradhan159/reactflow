@@ -37,7 +37,6 @@ const FlowDiagram = ({
         onConnect={onConnect}
         nodeTypes={nodeTypes}
         onInit={setRfInstance}
-
         fitView
       >
         <Controls />
