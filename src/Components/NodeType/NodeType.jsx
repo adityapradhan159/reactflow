@@ -57,7 +57,13 @@ const NodeType = ({ isConnectable }) => {
                 />
               </div>
             ) : (
-              <div style={{ textAlign: "center", padding: "10px 0px 10px 0px",display:"flex" }}>
+              <div
+                style={{
+                  textAlign: "center",
+                  padding: "10px 0px 10px 0px",
+                  display: "flex",
+                }}
+              >
                 <input
                   style={{
                     textAlign: "center",
@@ -76,7 +82,7 @@ const NodeType = ({ isConnectable }) => {
                 />
                 {/* Additional Handle for each button */}
                 <Handle
-                style={{top:"auto"}}
+                  style={{ top: "auto" }}
                   type="source"
                   position={Position.Right}
                   id={`handle${message.id}`}
