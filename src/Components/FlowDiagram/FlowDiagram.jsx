@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useCallback, useRef, useState } from "react";
 import ReactFlow, {
   MiniMap,
@@ -11,6 +12,7 @@ import ReactFlow, {
 const FlowDiagram = ({
   nodes,
   edges,
+  setRfInstance,
   onNodesChange,
   onConnect,
   onEdgesChange,
@@ -34,7 +36,9 @@ const FlowDiagram = ({
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
         nodeTypes={nodeTypes}
-        // fitView
+        onInit={setRfInstance}
+
+        fitView
       >
         <Controls />
         <MiniMap />
